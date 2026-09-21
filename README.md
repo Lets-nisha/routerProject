@@ -8,6 +8,8 @@ This project demonstrates how routing can be implemented in a React application 
 
 It includes multiple pages such as Home, About, Contact, User, and GitHub. It also demonstrates dynamic routing and fetching GitHub profile data using the GitHub API.
 
+The project also includes a **Dark / Light Mode** using React Context API, Tailwind CSS, and LocalStorage.
+
 ## ✨ Features
 
 * 🏠 Home Page
@@ -20,6 +22,8 @@ It includes multiple pages such as Home, About, Contact, User, and GitHub. It al
 * 📊 GitHub Profile Statistics
 * 📱 Responsive UI
 * 🎨 Tailwind CSS Styling
+* 🌙 Dark / Light Mode
+* 💾 Theme Preference Persistence
 
 ## 🛠️ Technologies Used
 
@@ -28,6 +32,7 @@ It includes multiple pages such as Home, About, Contact, User, and GitHub. It al
 * **JavaScript**
 * **Tailwind CSS**
 * **GitHub API**
+* **LocalStorage**
 * **Vite**
 
 ## 🧠 React Router Concepts Used
@@ -118,6 +123,103 @@ const data = useLoaderData();
 
 The data is then displayed dynamically on the GitHub profile page.
 
+## 🌙 Dark / Light Theme
+
+This project includes a **Dark / Light Mode** using React Context API and Tailwind CSS.
+
+### Theme Features
+
+* ☀️ Light Mode
+* 🌙 Dark Mode
+* 🔄 Toggle between Light and Dark Mode
+* 💾 Theme preference is saved in `localStorage`
+* 🔁 Selected theme remains active after page refresh
+* 🎨 Dark styling is applied across the application
+
+### Theme Context
+
+A custom `ThemeContext` is used to manage the current theme and provide theme functions to different components.
+
+```jsx
+const ThemeContext = createContext({
+  themeMode: "light",
+  lightTheme: () => {},
+  darkTheme: () => {},
+});
+```
+
+The `ThemeProvider` provides the theme state and functions to the application:
+
+```jsx
+<ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
+    <RouterProvider router={router} />
+</ThemeProvider>
+```
+
+### Theme Toggle
+
+The theme toggle uses the current `themeMode` to switch between Light and Dark Mode.
+
+```jsx
+const { themeMode, lightTheme, darkTheme } = useTheme();
+
+const onChangeBtn = (e) => {
+    const darkModeStatus = e.currentTarget.checked;
+
+    if (darkModeStatus) {
+        darkTheme();
+    } else {
+        lightTheme();
+    }
+};
+```
+
+### Tailwind Dark Mode
+
+Tailwind CSS dark mode is configured using a custom variant:
+
+```css
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+When Dark Mode is selected, the `dark` class is added to the HTML element.
+
+```jsx
+document.documentElement.classList.remove("light", "dark");
+document.documentElement.classList.add(themeMode);
+```
+
+Tailwind's `dark:` classes are then used to apply dark styling:
+
+```jsx
+<div className="bg-white text-black dark:bg-gray-900 dark:text-white">
+    Content
+</div>
+```
+
+### Theme Persistence
+
+The selected theme is stored in `localStorage` so that it remains active after refreshing the page.
+
+```jsx
+const [themeMode, setThemeMode] = useState(
+    () => localStorage.getItem("themeMode") || "light"
+);
+```
+
+The theme is saved whenever it changes:
+
+```jsx
+useEffect(() => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(themeMode);
+
+    localStorage.setItem("themeMode", themeMode);
+}, [themeMode]);
+```
+
 ## 🐙 GitHub API
 
 The project fetches GitHub profile information and displays:
@@ -193,6 +295,10 @@ Through this project, I improved my understanding of:
 * API integration
 * Reusable React components
 * Tailwind CSS
+* React Context API
+* Dark / Light Mode implementation
+* Tailwind CSS dark mode
+* `localStorage` for theme persistence
 
 ## 🚀 Future Improvements
 
