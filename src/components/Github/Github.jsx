@@ -4,9 +4,9 @@ export const Github = () => {
     const data = useLoaderData();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br   px-4 py-5">
+        <div className="min-h-screen bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 px-4 py-5">
 
-            <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div className="max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
 
                 {/* Banner */}
                 <div className="h-20 bg-gradient-to-r from-blue-200 via-blue-800 to-blue-200">
@@ -19,22 +19,22 @@ export const Github = () => {
                         <img
                             src="https://i.pinimg.com/originals/92/32/3b/92323bb410cc82cecf739c87c0d31187.jpg"
                             alt={data.login}
-                            className="w-50 h-50 rounded-full border-8 border-white shadow-xl"
+                            className="w-50 h-50 rounded-full border-8 border-white dark:border-gray-900 shadow-xl"
                         />
                     </div>
 
                     {/* Name */}
                     <div className="text-center mt-4">
-                        <h2 className="text-3xl font-bold text-gray-900">
+                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
                             {data.name || data.login}
                         </h2>
 
-                        <p className="text-gray-500 text-lg">
+                        <p className="text-gray-500 dark:text-gray-400 text-lg">
                             @{data.login}
                         </p>
 
                         {data.bio && (
-                            <p className="max-w-xl mx-auto mt-4 text-gray-600">
+                            <p className="max-w-xl mx-auto mt-4 text-gray-600 dark:text-gray-300">
                                 {data.bio}
                             </p>
                         )}
@@ -43,36 +43,34 @@ export const Github = () => {
                     {/* GitHub Stats */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
 
-                        <div className="bg-orange-50 rounded-2xl p-6 text-center">
-                            <div className="text-3xl font-bold text-orange-600">
+                        <div className="bg-orange-50 dark:bg-orange-950 rounded-2xl p-6 text-center">
+                            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
                                 {data.followers}
                             </div>
-                            <div className="text-gray-600 mt-1">
+                            <div className="text-gray-600 dark:text-gray-300 mt-1">
                                 Followers
                             </div>
                         </div>
 
-                        <div className="bg-purple-50 rounded-2xl p-6 text-center">
-                            <div className="text-3xl font-bold text-purple-600">
+                        <div className="bg-purple-50 dark:bg-purple-950 rounded-2xl p-6 text-center">
+                            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
                                 {data.following}
                             </div>
-                            <div className="text-gray-600 mt-1">
+                            <div className="text-gray-600 dark:text-gray-300 mt-1">
                                 Following
                             </div>
                         </div>
 
-                        <div className="bg-blue-50 rounded-2xl p-6 text-center">
-                            <div className="text-3xl font-bold text-blue-600">
+                        <div className="bg-blue-50 dark:bg-blue-950 rounded-2xl p-6 text-center">
+                            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                                 {data.public_repos}
                             </div>
-                            <div className="text-gray-600 mt-1">
+                            <div className="text-gray-600 dark:text-gray-300 mt-1">
                                 Repositories
                             </div>
                         </div>
 
                     </div>
-
-
 
                     {/* GitHub Link */}
                     <div className="text-center mt-8">
@@ -80,7 +78,7 @@ export const Github = () => {
                             href={data.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block bg-gray-900 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl transition duration-300 shadow-lg"
+                            className="inline-block bg-gray-900 dark:bg-gray-700 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl transition duration-300 shadow-lg"
                         >
                             Visit GitHub Profile →
                         </a>
@@ -88,8 +86,6 @@ export const Github = () => {
 
                 </div>
             </div>
-
-
 
         </div>
     );
